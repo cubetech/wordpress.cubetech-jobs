@@ -12,7 +12,7 @@ include_once('lib/cubetech-post-type.php');
 include_once('lib/cubetech-shortcode.php');
 
 wp_enqueue_script('jquery');
-wp_register_script('cubetech_jobs_js', plugins_url('assets/js/cubetech-jobs.js', __FILE__), 'jquery');
+wp_register_script('cubetech_jobs_js', plugins_url('assets/js/cubetech-jobs.js', __FILE__), array('jquery','wpdialogs'));
 wp_enqueue_script('cubetech_jobs_js');
 
 add_action('wp_enqueue_scripts', 'cubetech_jobs_add_styles');
@@ -21,7 +21,15 @@ function cubetech_jobs_add_styles() {
 	wp_register_style('cubetech-jobs-css', plugins_url('assets/css/cubetech-jobs.css', __FILE__) );
 	wp_enqueue_style('cubetech-jobs-css');
 }
-
+if(!function_exists('enqueue_css'))
+{
+	function enqueue_css()
+	{
+		wp_register_style('custom_jquery-ui-dialog', plugins_url('assets/css/jquery-ui-dialog.min.css', __FILE__) );
+		wp_enqueue_style('custom_jquery-ui-dialog');
+	}
+	add_action( 'admin_enqueue_scripts', 'enqueue_css' );
+} 
 /* Add button to TinyMCE */
 function cubetech_jobs_addbuttons() {
 
