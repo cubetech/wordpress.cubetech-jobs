@@ -58,7 +58,7 @@ function cubetech_jobs_content($posts) {
 		
 		if ( count($attachments) > 0 ) {
 			$contentreturn .= '<div class="cubetech-jobs-link">
-				<a class="cubetech-jobs-button" target="_blank" href="' . wp_get_attachment_url( $attachments[0]->ID ) . '">PDF herunterladen</a>
+				<a class="cubetech-jobs-button" target="_blank" href="' . get_field('pdf_job', $post->ID) . '">PDF herunterladen</a>
 			</div>';
 		}
 		$contentreturn .= '</div>';
